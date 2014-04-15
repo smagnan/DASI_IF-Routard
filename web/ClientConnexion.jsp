@@ -20,6 +20,6 @@
 	    <label for="pass">Mot de passe</label> : <input type="password" name="pass" id="pass" /><br> 
 	    <input type="submit" name="submit" value="Me connecter"/>
 	</form>
-	
+	<input type="button" value ="M'inscrire et acceder aux offres" onclick="self.location.href='ClientInscription.jsp'" />
     </body>
 </html>
