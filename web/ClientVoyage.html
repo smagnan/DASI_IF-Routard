@@ -1,0 +1,97 @@
+<%--                                                                                                                                                                  
+    Document   : ClientRecherche_Pays
+    Created on : 17 avr. 2014, 12:51:23
+    Author     : Administrateur
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Voyage "XXX"</title>
+	<style>
+		table tr:nth-child(odd)
+		{
+    			background-color: #f0f0f0;
+		}
+		table tr:nth-child(1)
+		{
+			background-color: darkslateblue;
+		}
+	</style>
+    </head>
+    <body>
+        <%@include file="headerClient.jsp" %>
+        <br/>
+	<input type="submit" name="retour" value="Retour"/>
+        <h1 align="center">Voyages "XXX"</h1>  <br/>
+        <fieldset align="left">
+		<legend>XXX</legend>
+		<p align="right">Durée</p>
+		<p>Description</p>
+        	<img src="img/temp.png">
+	</fieldset>
+        <h3>Fiche voyage</h3>
+	<p>Transport au cours du circuit: XXX</p>
+	<p>Nombre de kilomètres parcourus dans le circuit: XXX</p>
+	<h3>Choix de départ</h3>
+	<form method="post" action="/IFRoutardWeb/ActionServlet">
+	        <%-- Passage param Todo par champ HIDDEN, A changer --%>                                                                                             
+                <input type="hidden" name="todo" id="todo" value="processInscrpition" />
+
+		<table id=choix_depart frame="box" border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse" width=80%>
+			<tr align="center">
+				<th>Ville de départ</th>
+				<th>Date</th>
+				<th>Prix<br/>(par personne)</th>
+				<th>Remarques</th>
+				<th>Choix</th>
+			</tr>
+			<tr align="center">
+				<td>Lyon</td>
+				<td>06/01/2014</td>
+				<td>2495 euros</td>
+				<td>Air France</td>
+				<td><input type="radio" name="group1"></td>
+			</tr>
+			<tr align="center">
+				<td>Lyon</td>
+				<td>06/01/2014</td>
+				<td>2495 euros</td>
+				<td>Air France</td>
+				<td><input type="radio" name="group1"></td>
+			</tr>
+			<tr align="center">
+				<td>Lyon</td>
+				<td>06/01/2014</td>
+				<td>2495 euros</td>
+				<td>Air France</td>
+				<td><input type="radio" name="group1"></td>
+			</tr>
+			<tr align="center">
+				<td>Lyon</td>
+				<td>06/01/2014</td>
+				<td>2495 euros</td>
+				<td>Air France</td>
+				<td><input type="radio" name="group1"></td>
+			</tr>
+			<tr align="center">
+				<td>Lyon</td>
+				<td>06/01/2014</td>
+				<td>2495 euros</td>
+				<td>Air France</td>
+				<td><input type="radio" name="group1"></td>
+			</tr>
+		</table>
+		<br/>
+		Nombre de voyageurs: 
+		<select name="nbVoyag" id="nbVoyag">                                                                                                 
+		       <option value="1">1</option>
+		       <option value="2">2</option>
+		       <option value="3">3</option>
+		</select>
+		<input type="submit" value="Obtenir un devis">
+	</form>
+    </body>
+</html>
+
