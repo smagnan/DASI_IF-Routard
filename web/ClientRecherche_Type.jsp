@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 31 mars 2014, 17:44:00
+    Document   : ClientRecherche_Type
+    Created on : 17 avr. 2014, 12:51:00
     Author     : Administrateur
 --%>
 
@@ -9,11 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Recherche | XXX</title>
     </head>
     <body>
-        <h1>IF'Routard</h1>
-	<a href="ClientConnexion.jsp">Connexion Client</a>
-	<a href="error.html">Page erreur</a>
+	<%@include file="headerClient.jsp" %>
+        <h1 align="center">Tous nos XXX</h1>
+	
     </body>
 </html>

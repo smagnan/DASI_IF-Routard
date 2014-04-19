@@ -17,33 +17,39 @@
     <body>
 	<%@include file="headerClient.jsp" %>
 	<h1 align="center">Recherche de voyage</h1>
-	<table>
-	<tr>
-	    <td align="center">Par pays</td>
-	    <td align="center">Par type de voyage</td>
-	</tr>
-	<tr>
-	    <form method="post" action="/IFRoutardWeb/ServletRecherchePays">
-	    <td align="center"><input type="text" size="40" name="pays" id="pays"><br/>
-	    <input type="submit"></td>
-	    </form>
-	     <td align="center"><select name="voyage" id="voyage" size="40" name="type" id="type">
-		    <option value="Circuit">Circuit accompagné</option>
-		    <option value="Sejour">Séjour</option>
-		    <%-- <%
-		     List<Voyage> voyages = ServiceVoyage.obtenirVoyages();
-		    for(Voyage voys : voyages)
-		    {
-			out.println("<option value=\""+voys.getTitre()+"\">"+voys.getTitre()+"</option>");
-		    }
-		    %> --%>
-		    
-		    </select> </td>
-	</tr>
-	<tr>
-	    <td align="center"><input type="submit"></td>
-	    <td align="center"><input type="submit"></td>
-	</tr>
+	<table align="center">
+	    <tr>
+
+		<td align="center">
+		    <form method="post" action="/IFRoutardWeb/ActionServlet">
+			 <%-- Passage param Todo par champ HIDDEN, A changer --%> 
+			<input type="hidden" name="todo" id="todo" value="processRecherche_Pays" />
+			Par pays <br/>
+			<input type="text" size="40" name="pays" id="pays"><br/>
+			<input type="submit" name="recherche_Pays" value="Recherche"/>
+		    </form>
+		</td>
+		<td align="center">
+		    <form method="post" action="/IFRoutardWeb/ActionServlet">
+			 <%-- Passage param Todo par champ HIDDEN, A changer --%> 
+			<input type="hidden" name="todo" id="todo" value="processRecherche_Type" />
+			Par type de voyage <br/>
+			<select name="voyage" id="voyage" name="type" id="type">
+			    <option value="Circuit">Circuit accompagné</option>
+			    <option value="Sejour">Séjour</option>
+			    <%-- <%
+			     List<Voyage> voyages = ServiceVoyage.obtenirVoyages();
+			    for(Voyage voys : voyages)
+			    {
+				out.println("<option value=\""+voys.getTitre()+"\">"+voys.getTitre()+"</option>");
+			    }
+			    %> --%>
+
+			</select><br/>
+			<input type="submit" name="recherche_Type" value="Recherche"/>
+		    </form>
+		</td>
+	    </tr>
 	</table>
     </body>
 </html>

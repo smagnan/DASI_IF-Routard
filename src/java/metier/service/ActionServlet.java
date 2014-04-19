@@ -6,11 +6,6 @@ package metier.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,14 +32,20 @@ public class ActionServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+	
 	response.setContentType("text/html;charset=UTF-8");
 	PrintWriter out = response.getWriter();
+	
 	String tache = request.getParameter("todo");
+	
 	Action action = this.getAction(tache);
 	action.execute(request);
 	String vue = this.setVue(request,tache);
+	
 	request.getRequestDispatcher(vue).forward(request, response);
+	
 	try {
+	    
 	    /* TODO output your page here. You may use following sample code. */
 	    out.println("<html>");
 	    out.println("<head>");
@@ -54,17 +55,22 @@ public class ActionServlet extends HttpServlet {
 	    out.println("<h1>Servlet ActionServlet at " + request.getContextPath() + "</h1>");
 	    out.println("</body>");
 	    out.println("</html>");
+	    
 	} finally {	    
 	    out.close();
 	}
     }
+    // ------------------------------------------------------- Contrôleur: Actions
     private Action getAction(String todo){
 	Action action = null;
-	if(todo.equals("")){
-	    
+	if(todo.equals("processRecherche_Pays")){
+	    action = new ActionRecherche_Pays();
 	}
-	else if(todo.equals("")){
-	    
+	else if(todo.equals("processRecherche_Type")){
+	    action = new ActionRecherche_Type();
+	}
+	else if(todo.equals("processInscrpition")){
+	    action =new ActionInscription();
 	}
 	else if(todo.equals("processLogin")){
 	    action = new ActionLogin();
@@ -72,21 +78,78 @@ public class ActionServlet extends HttpServlet {
 	else if(todo.equals("")){
 	    
 	}
+	else
+	{
+	    
+	}
 	return action;
     }
+    
+    // ------------------------------------------------------- Contrôleur: Vues
     private String setVue(HttpServletRequest request,String todo){
 	String vue = null;
-	if(todo.equals("")){
-	    
+	if(todo.equals("processRecherche_Pays")){
+	    System.out.println("----> A");
+	    if(request.getParameter("voyages")!=null)
+	    {
+		vue = "ClientRecherche_Pays.jsp";
+		System.out.println("----> B");
+		HttpSession session = request.getSession();
+		System.out.println("----> B A");
+		session.setMaxInactiveInterval(20 * 60);
+		System.out.println("----> B B");
+		session.setAttribute( "listeVoyagesPays", request.getParameter("voyages"));
+		System.out.println("----> C");
+	    }
+	    else
+	    {
+		System.out.println("----> B2");
+		vue = "error.html";
+	    }
 	}
-	else if(todo.equals("")){
-	    
+	else if(todo.equals("processRecherche_Type")){
+	    vue = "ClientRecherche_Type.jsp";
+	}
+	else if(todo.equals("processInscrpition")){
+	    Client client = (Client)request.getAttribute("client");
+	    if(client!=null)
+	    {
+		vue = "ClientConnexion.jsp";   
+	    }
+	    else
+	    {
+		vue = "ClientInscription.jsp";
+	    }
 	}
 	else if(todo.equals("processLogin")){
-	    if(request.getAttribute("testPass").equals(true) || true)
+	    
+	    Client client = (Client)request.getAttribute("client");
+	    if((request.getAttribute("testPass").equals(true) || true) && client != null)
 	    {
+		
+		// --------------------------- Mise en place de la session START
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(20 * 60);
+		
+		
+		/*if(client != null)
+		{*/
+		session.setAttribute( "theName", client.getNomComplet() );
+		session.setAttribute( "theClient", client);
+		/*}
+		else
+		{
+		    session.setAttribute( "theName", "<font color=\"red\">ERROR: no such client</font>" );
+		}*/
+		// ----------------------------- Mise en place de la session END
+		
+		// --------------------------------------------- choix de la vue
 		vue = "ClientRecherche.jsp";
-	    }else{}
+	    }
+	    else
+	    {
+		vue = "error.html";
+	    }
 	}
 	else if(todo.equals("")){
 	    

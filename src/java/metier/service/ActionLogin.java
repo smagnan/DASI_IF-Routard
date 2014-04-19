@@ -13,13 +13,13 @@ import metier.modele.Client;
  * @author Administrateur
  */
 public class ActionLogin extends Action{
-    @Override
+    
     public void execute(HttpServletRequest request){
 	String email = request.getParameter("email");
 	String pass = request.getParameter("pass");
 	Client client = ServiceClient.obtenirClientParEmail(email);
-	boolean testPass = ServiceClient.testerMotDePasse(client, pass);
-	request.setAttribute("Client", client);
-	request.setAttribute("testPass", testPass);
+	boolean testPass = (client!=null)?ServiceClient.testerMotDePasse(client, pass):false;
+	request.setAttribute("client", client);
+	request.setAttribute("testPass", pass);
     }
 }

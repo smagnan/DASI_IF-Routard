@@ -14,14 +14,16 @@
     <body>
         <h1>IF'Routard</h1>
 	<div style="float:left" align="right">
-	<form method="post" action="/IFRoutardWeb/ServletInscritClient">
+	<form method="post" action="/IFRoutardWeb/ActionServlet">
+	    <%-- Passage param Todo par champ HIDDEN, A changer --%> 
+	    <input type="hidden" name="todo" id="todo" value="processInscrpition" />
 	    <table>
 		<tr>
 		    <td align="right"><label for="civil">Civilité</label>:</td>
 		    <td align="left"><select name="civil" id="civil">
-		    <option value="M.">M.</option>
-		    <option value="Mme.">Mme.</option>
-		    <option value="Mlle.">Mlle.</option>
+			<option value="M.">M.</option>
+			<option value="Mme.">Mme.</option>
+			<option value="Mlle.">Mlle.</option>
 		    </select> </td>
 		</tr>
 		<tr>
@@ -38,7 +40,7 @@
 		</tr>
 		<tr>
 		<td align="right"><label for="tel">Téléphone</label> : </td>
-		<td align="left"><input type="text" name="tel" id="tel" /></td>
+		<td align="left"><input type="tel" name="tel" id="tel" /></td>
 		</tr>
 		<tr>
 		<td align="right"><label for="email">E-mail</label> : </td>
