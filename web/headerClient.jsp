@@ -14,5 +14,5 @@
     &nbsp;&nbsp;&#124;&nbsp;&nbsp;
     <a href="ClientRecherche.jsp">Nouvelle Recherche</a>
     &nbsp;&nbsp;&#124;&nbsp;&nbsp;
-    <a href="ClientConnexion.jsp">Déconnexion</a></p>
+    <a href="ClientConnexion.jsp">Déconnexion</a>
 <hr/>

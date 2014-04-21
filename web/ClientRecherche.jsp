@@ -16,35 +16,23 @@
     </head>
     <body>
 	<%@include file="headerClient.jsp" %>
-	<h1 align="center">Recherche de voyage</h1>
+        <br><br><br>
+        <p align="center" style="font-size:70px; margin:0;"><font face="Comic sans MS">Recherche de voyage</font></p><br/><br>
 	<table align="center">
 	    <tr>
-
-		<td align="center">
-		    <form method="post" action="/IFRoutardWeb/ActionServlet">
-			 <%-- Passage param Todo par champ HIDDEN, A changer --%> 
-			<input type="hidden" name="todo" id="todo" value="processRecherche_Pays" />
-			Par pays <br/>
-			<input type="text" size="40" name="pays" id="pays"><br/>
+		<td align="center" style="width:50%">
+		    <form method="post" action="ClientRecherche_Pays.jsp">
+			<font face="Comic sans MS" size="5">Par pays</font><br/><br/>
+			<input type="text" size="40" name="pays" id="pays" value="Argentine"><br/>
 			<input type="submit" name="recherche_Pays" value="Recherche"/>
 		    </form>
 		</td>
-		<td align="center">
-		    <form method="post" action="/IFRoutardWeb/ActionServlet">
-			 <%-- Passage param Todo par champ HIDDEN, A changer --%> 
-			<input type="hidden" name="todo" id="todo" value="processRecherche_Type" />
-			Par type de voyage <br/>
-			<select name="voyage" id="voyage" name="type" id="type">
+		<td align="center" style="width:50%">
+		    <form method="post" action="ClientRecherche_Type.jsp">
+			<font face="Comic sans MS" size="5">Par type de voyage</font><br/><br/>
+			<select name="type" name="type" id="type" style="width:100%">
 			    <option value="Circuit">Circuit accompagné</option>
 			    <option value="Sejour">Séjour</option>
-			    <%-- <%
-			     List<Voyage> voyages = ServiceVoyage.obtenirVoyages();
-			    for(Voyage voys : voyages)
-			    {
-				out.println("<option value=\""+voys.getTitre()+"\">"+voys.getTitre()+"</option>");
-			    }
-			    %> --%>
-
 			</select><br/>
 			<input type="submit" name="recherche_Type" value="Recherche"/>
 		    </form>

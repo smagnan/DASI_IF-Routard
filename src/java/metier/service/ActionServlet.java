@@ -42,17 +42,18 @@ public class ActionServlet extends HttpServlet {
 	action.execute(request);
 	String vue = this.setVue(request,tache);
 	
-	request.getRequestDispatcher(vue).forward(request, response);
+	//request.getRequestDispatcher(vue).forward(request, response);
 	
 	try {
 	    
 	    /* TODO output your page here. You may use following sample code. */
 	    out.println("<html>");
 	    out.println("<head>");
-	    out.println("<title>Servlet ActionServlet</title>");	    
+	    out.println("<title>Action Servlet</title>");	    
 	    out.println("</head>");
 	    out.println("<body>");
-	    out.println("<h1>Servlet ActionServlet at " + request.getContextPath() + "</h1>");
+	    out.println("<h1>Redirection...</h1>");
+            out.println("<meta http-equiv=\"Refresh\" content=\"0;"+vue+"\">");
 	    out.println("</body>");
 	    out.println("</html>");
 	    
@@ -63,20 +64,23 @@ public class ActionServlet extends HttpServlet {
     // ------------------------------------------------------- Contrôleur: Actions
     private Action getAction(String todo){
 	Action action = null;
-	if(todo.equals("processRecherche_Pays")){
-	    action = new ActionRecherche_Pays();
-	}
-	else if(todo.equals("processRecherche_Type")){
-	    action = new ActionRecherche_Type();
-	}
-	else if(todo.equals("processInscrpition")){
+        if(todo.equals("processInscrpition")){
 	    action =new ActionInscription();
 	}
 	else if(todo.equals("processLogin")){
 	    action = new ActionLogin();
 	}
-	else if(todo.equals("")){
-	    
+	else if(todo.equals("ajouterVoyage")){
+            action = new ActionAddVoyage();
+	}
+        else if(todo.equals("ajouterPays")){
+            action = new ActionAddPays();
+	}
+        else if(todo.equals("ajouterDepart")){
+            action = new ActionAddDepart();
+	}
+        else if(todo.equals("ajouterDevis")){
+            action = new ActionAddDevis();
 	}
 	else
 	{
@@ -136,6 +140,7 @@ public class ActionServlet extends HttpServlet {
 		{*/
 		session.setAttribute( "theName", client.getNomComplet() );
 		session.setAttribute( "theClient", client);
+                session.setAttribute( "EmailClient", client.getEmail());
 		/*}
 		else
 		{
@@ -151,7 +156,19 @@ public class ActionServlet extends HttpServlet {
 		vue = "error.html";
 	    }
 	}
-	else if(todo.equals("")){
+        else if(todo.equals("ajouterVoyage")){
+            vue = "/IFRoutardWeb/Employe/Voyage/EmployeModifierVoyageDepart.jsp?newDepart=false&modifDepart=false&type="+request.getParameter("type")+"&voyagemodifie="+request.getParameter("code");
+        }
+        else if(todo.equals("ajouterPays")){
+            vue = "/IFRoutardWeb/Employe/Pays/index.jsp";
+        }
+        else if(todo.equals("ajouterDepart")){
+            vue = "/IFRoutardWeb/Employe/Voyage/EmployeModifierVoyageDepart.jsp?newDepart=false&modifDepart=false&type="+request.getParameter("typeHidden")+"&voyagemodifie="+request.getParameter("voyagemodifieHidden");
+        }
+        else if(todo.equals("ajouterDevis")){
+            vue = "ClientConfirmation.jsp?devis=true&type="+request.getParameter("typeSelect")+"&voyage="+request.getParameter("voyageSelect")+"&depart="+request.getParameter("departSelect")+"&nb="+request.getParameter("nb");
+        }
+        else if(todo.equals("")){
 	    
 	}
 	return vue;
